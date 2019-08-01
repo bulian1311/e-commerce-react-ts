@@ -1,8 +1,10 @@
 import React, { FC, ReactElement } from 'react';
 import Directory from '../../components/directory';
-import './homePage.scss';
+import './HomePage.scss';
 
-const HomePage: FC = (): ReactElement => {
+type PropsType = {}
+
+const HomePage: FC<PropsType> = (): ReactElement => {
   return (
     <div className="homepage">
       <Directory />

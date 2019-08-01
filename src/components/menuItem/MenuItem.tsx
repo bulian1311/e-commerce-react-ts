@@ -1,15 +1,20 @@
 import React, { FC, ReactElement } from 'react';
-import './menuItem.scss';
+import './MenuItem.scss';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-type PropsType = {
+type PropsType = RouteComponentProps & {
   title: string,
   imageUrl: string,
-  size: string
+  size: string,
+  linkUrl: string
 }
 
-const MehuItem: FC<PropsType> = ({ title, imageUrl, size }): ReactElement => {
+const MenuItem: FC<PropsType> = ({ title, imageUrl, linkUrl, size, history }): ReactElement => {
   return (
-    <div className={`${size} menu-item`}>
+    <div
+      onClick={() => history.push(linkUrl)}
+      className={`${size} menu-item`}
+    >
       <div
         className="background-image"
         style={{ backgroundImage: `url(${imageUrl})` }}
@@ -22,4 +27,4 @@ const MehuItem: FC<PropsType> = ({ title, imageUrl, size }): ReactElement => {
   )
 }
 
-export default MehuItem;
+export default withRouter(MenuItem);

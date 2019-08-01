@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import MenuItem from '../menuItem';
-import './directory.scss';
+import './Directory.scss';
 
 import { MenuItemType } from '../../utils/types';
+
+type PropsType = {}
 
 type StateType = {
   sections: MenuItemType[]
 }
 
-export class Directory extends Component {
+export class Directory extends Component<PropsType, StateType> {
   state: StateType = {
     sections: [
       {
@@ -53,12 +55,10 @@ export class Directory extends Component {
     return (
       <div className="directory-menu">
         {
-          this.state.sections.map((sec: MenuItemType) => (
+          this.state.sections.map(({ id, ...otherProps }: MenuItemType) => (
             <MenuItem
-              key={sec.id}
-              title={sec.title}
-              imageUrl={sec.imageUrl}
-              size={sec.size}
+              key={id}
+              {...otherProps}
             />
           ))
         }
