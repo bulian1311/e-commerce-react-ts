@@ -1,10 +1,11 @@
-import firebase, { provider } from './firebase';
-import { Auth, Firestore } from './types';
+import firebase from './firebase';
+import { auth, signInWithGoogle, createUserProfileDocument } from './auth';
+import { firestore } from './firestore';
 
-export const auth: Auth = firebase.auth();
-
-export const firestore: Firestore = firebase.firestore();
-
-export const signInWithGoogle = (): any => auth.signInWithPopup(provider);
-
-export default firebase;
+export {
+  firebase,
+  firestore,
+  auth,
+  signInWithGoogle,
+  createUserProfileDocument
+};

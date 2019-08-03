@@ -1,3 +1,10 @@
+export type UserType = {
+  id: string,
+  displayName: string,
+  email: string,
+  createdAt: any
+}
+
 export type MenuItemType = {
   title: string,
   imageUrl: string,
