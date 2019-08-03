@@ -3,14 +3,19 @@ import './CustomButton.scss';
 
 type PropsType = {
   children: string,
-  type: "button" | "submit" | "reset"
+  onClick?: () => any,
+  type?: "button" | "submit" | "reset",
+  isGoogleSignIn?: boolean
 }
 
 const CustomButton: FC<PropsType> = (
-  { children, ...otherProps }
+  { children, isGoogleSignIn, ...otherProps }
 ): ReactElement => {
   return (
-    <button className="custom-button" {...otherProps}>
+    <button
+      className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+      {...otherProps}
+    >
       {children}
     </button>
   )

@@ -1,6 +1,7 @@
 import React, { Component, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../formInput';
 import CustomButton from '../customButton';
+import { signInWithGoogle } from '../../firebase';
 import './SignIn.scss';
 
 type StateType = {
@@ -60,8 +61,10 @@ class SignIn extends Component<{}, StateType> {
             handleChange={this.handleChangePassword}
             label="password"
           />
-
-          <CustomButton type="submit">Sign In</CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit">Sign In</CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
+          </div>
         </form>
       </div>
     )
