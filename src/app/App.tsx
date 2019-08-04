@@ -46,8 +46,6 @@ class App extends React.Component<{}, StateType> {
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <div>
         <Header currentUser={this.state.currentUser} />

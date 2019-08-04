@@ -1,7 +1,7 @@
 import React, { Component, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../formInput';
 import CustomButton from '../customButton';
-import { signInWithGoogle } from '../../firebase';
+import { auth, signInWithGoogle } from '../../firebase';
 import './SignIn.scss';
 
 type StateType = {
@@ -15,13 +15,19 @@ class SignIn extends Component<{}, StateType> {
     password: ''
   }
 
-  private handleSubmit = (e: FormEvent) => {
+  private handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
 
-    this.setState({
-      email: '',
-      password: ''
-    });
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+
+      this.setState({
+        email: '',
+        password: ''
+      });
+    } catch (err) { console.error(err.message) }
   }
 
   private handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
