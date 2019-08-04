@@ -7,8 +7,7 @@ import ShopPage from '../pages/shopPage';
 import SignInAndSignUpPage from '../pages/signInAndSignUpPage';
 import { UserType } from '../utils/types';
 import { auth, createUserProfileDocument } from '../firebase';
-import { DocumentSnapshot, DocumentReference } from '../firebase/types';
-import { User } from 'firebase';
+import { DocumentSnapshot, DocumentReference, User } from '../firebase/types';
 
 type StateType = {
   currentUser: UserType | null
@@ -18,7 +17,6 @@ class App extends React.Component<{}, StateType> {
   state: StateType = {
     currentUser: null
   }
-
   private unsubscribeFromAuth: any;
 
   componentDidMount() {
@@ -48,6 +46,8 @@ class App extends React.Component<{}, StateType> {
   }
 
   render() {
+    console.log(this.state);
+
     return (
       <div>
         <Header currentUser={this.state.currentUser} />

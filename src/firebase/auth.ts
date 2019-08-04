@@ -1,8 +1,7 @@
 import firebase from './firebase';
 import { Auth, GoogleAuthProvider } from './types';
 import { firestore } from './firestore';
-import { DocumentReference, DocumentSnapshot } from './types';
-import { User } from 'firebase';
+import { DocumentReference, DocumentSnapshot, User } from './types';
 
 export const auth: Auth = firebase.auth();
 
