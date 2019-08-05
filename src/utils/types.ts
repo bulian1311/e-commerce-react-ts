@@ -1,3 +1,7 @@
+export type RootState = {
+  user: { currentUser: UserType | null }
+}
+
 export type UserType = {
   id: string,
   displayName: string,
@@ -26,3 +30,9 @@ export type ShopItemType = {
   imageUrl: string,
   price: number
 }
+
+// Redux types
+
+// export type UserActionType = AnyAction & {
+//   payload: UserType
+// }
