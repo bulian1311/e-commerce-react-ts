@@ -1,6 +1,9 @@
 export type RootState = {
   user: { currentUser: UserType | null }
-  cart: { hidden: boolean }
+  cart: {
+    hidden: boolean,
+    cartItems: CartItemType[]
+  }
 }
 
 export type UserType = {
