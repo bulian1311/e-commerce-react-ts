@@ -5,15 +5,16 @@ type PropsType = {
   children: string,
   onClick?: () => any,
   type?: "button" | "submit" | "reset",
-  isGoogleSignIn?: boolean
+  isGoogleSignIn?: boolean,
+  inverted?: boolean
 }
 
 const CustomButton: FC<PropsType> = (
-  { children, isGoogleSignIn, ...otherProps }
+  { children, inverted, isGoogleSignIn, ...otherProps }
 ): ReactElement => {
   return (
     <button
-      className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+      className={`${inverted ? 'inverted' : ''} ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
       {...otherProps}
     >
       {children}

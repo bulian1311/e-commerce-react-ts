@@ -14,8 +14,8 @@ const CollectionPreview: FC<PropsType> = ({ title, items }): ReactElement => {
         {
           items
             .filter((item: ShopItemType, i: number) => i < 4)
-            .map(({ ...props }: ShopItemType) => (
-              <CollectionItem key={props.id} {...props} />
+            .map((item: ShopItemType) => (
+              <CollectionItem key={item.id} item={item} />
             ))
         }
       </div>

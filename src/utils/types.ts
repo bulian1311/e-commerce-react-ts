@@ -32,8 +32,6 @@ export type ShopItemType = {
   price: number
 }
 
-// Redux types
-
-// export type UserActionType = AnyAction & {
-//   payload: UserType
-// }
+export type CartItemType = ShopItemType & {
+  qty: number
+}
