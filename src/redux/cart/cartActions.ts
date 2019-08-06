@@ -16,3 +16,17 @@ export const addItemToCart: ActionCreator<AnyAction> = (
     payload: shopItem
   }
 }
+
+export const clearItemFromCart: ActionCreator<AnyAction> = (item: CartItemType): AnyAction => {
+  return {
+    type: cartActionTypes.CLEAR_ITEM_FROM_CART,
+    payload: item
+  }
+}
+
+export const removeItem: ActionCreator<AnyAction> = (item: CartItemType): AnyAction => {
+  return {
+    type: cartActionTypes.REMOVE_ITEM,
+    payload: item
+  }
+}
