@@ -1,19 +1,16 @@
 import { Reducer, AnyAction } from 'redux';
 import cartActionTypes from './cartActionTypes';
-import { CartItemType } from '../../utils/types';
+import { CartItemType, CartStateType } from '../../utils/types';
 import { addItem } from './cartUtils';
 
-type StateType = {
-  hidden: boolean,
-  cartItems: CartItemType[]
-}
-
-const INITIAL_STATE: StateType = {
+const INITIAL_STATE: CartStateType = {
   hidden: true,
   cartItems: []
 }
 
-const cartReducer: Reducer = (state: StateType = INITIAL_STATE, action: AnyAction): StateType => {
+const cartReducer: Reducer = (
+  state: CartStateType = INITIAL_STATE, action: AnyAction
+): CartStateType => {
   switch (action.type) {
     case cartActionTypes.TOGGLE_CART_HIDDEN:
       return {
