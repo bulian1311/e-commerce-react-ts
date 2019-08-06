@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './logo.svg';
 import { auth } from '../../firebase';
 import { connect } from 'react-redux';
-import { RootState, UserType } from '../../utils/types';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/userSelectors';
+import { selectCartHidden } from '../../redux/cart/cartSelectors';
+import { RootState, UserType, UserStateType, CartStateType } from '../../utils/types';
 import CartDropdown from '../cartDropdown';
 
 type PropsType = {
   currentUser: UserType,
-  cartHidden: boolean
+  hidden: boolean
 }
 
-const Header: FC<PropsType> = ({ currentUser, cartHidden }): ReactElement => {
+const Header: FC<PropsType> = ({ currentUser, hidden }): ReactElement => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -38,18 +41,16 @@ const Header: FC<PropsType> = ({ currentUser, cartHidden }): ReactElement => {
         <CartIcon />
       </div>
       {
-        cartHidden ? null : <CartDropdown />
+        hidden ? null : <CartDropdown />
       }
 
     </div>
   )
 }
 
-const mapStateToProps = (
-  { user: { currentUser }, cart: { hidden } }: RootState
-) => ({
-  currentUser,
-  cartHidden: hidden
+const mapStateToProps = createStructuredSelector<RootState, UserStateType | CartStateType>({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);

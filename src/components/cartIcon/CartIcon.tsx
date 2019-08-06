@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { toggleCartHidden } from '../../redux/cart/cartActions';
 import { selectCartItemsCount } from '../../redux/cart/cartSelectors';
-import { RootState, CartItemType } from '../../utils/types';
+import { RootState } from '../../utils/types';
 import './CartIcon.scss';
 
 type PropsType = {
