@@ -1,6 +1,6 @@
 import { Reducer, AnyAction } from 'redux';
 import cartActionTypes from './cartActionTypes';
-import { CartItemType, CartStateType } from '../../utils/types';
+import { CartStateType } from '../../utils/types';
 import { addItem } from './cartUtils';
 
 const INITIAL_STATE: CartStateType = {

@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import './CheckOutPage.scss';
 import { connect } from 'react-redux';
+import CheckOutItem from '../../components/checkOutItem';
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cartSelectors';
 import { RootState, CartItemType } from '../../utils/types';
 
@@ -31,7 +32,7 @@ const CheckOutPage: FC<PropsType> = ({ cartItems, total }): ReactElement => {
       </div>
       {
         cartItems.map((item: CartItemType) => (
-          <p>{item.name}</p>
+          <CheckOutItem key={item.id} cartItem={item} />
         ))
       }
       <div className="total">
