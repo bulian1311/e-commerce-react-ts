@@ -8,8 +8,8 @@ const INITIAL_STATE: CartStateType = {
   cartItems: []
 }
 
-const cartReducer: Reducer = (
-  state: CartStateType = INITIAL_STATE, action: AnyAction
+const cartReducer: Reducer<CartStateType, AnyAction> = (
+  state = INITIAL_STATE, action
 ): CartStateType => {
   switch (action.type) {
     case cartActionTypes.TOGGLE_CART_HIDDEN:

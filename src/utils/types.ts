@@ -1,15 +1,25 @@
 export type RootState = {
-  user: UserStateType
-  cart: CartStateType
+  user: UserStateType,
+  cart: CartStateType,
+  directory: DirectoryStateType,
+  shop: ShopStateType
 }
 
 export type UserStateType = {
   currentUser: UserType | null;
 };
 
+export type ShopStateType = {
+  collections: CollectionItemType[]
+}
+
 export type CartStateType = {
   hidden: boolean,
   cartItems: CartItemType[]
+}
+
+export type DirectoryStateType = {
+  sections: DirectoryItemType[]
 }
 
 export type UserType = {
@@ -19,7 +29,7 @@ export type UserType = {
   createdAt: any
 }
 
-export type MenuItemType = {
+export type DirectoryItemType = {
   title: string,
   imageUrl: string,
   id: number,

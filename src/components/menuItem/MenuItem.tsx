@@ -1,9 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import './MenuItem.scss';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { MenuItemType } from '../../utils/types';
+import { DirectoryItemType } from '../../utils/types';
 
-type PropsType = RouteComponentProps & MenuItemType & {}
+type PropsType = RouteComponentProps & DirectoryItemType & {}
 
 const MenuItem: FC<PropsType> = ({ title, imageUrl, linkUrl, size, history }): ReactElement => {
   return (
