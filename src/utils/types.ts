@@ -10,7 +10,7 @@ export type UserStateType = {
 };
 
 export type ShopStateType = {
-  collections: CollectionItemType[]
+  collections: CollectionsType
 }
 
 export type CartStateType = {
@@ -35,6 +35,14 @@ export type DirectoryItemType = {
   id: number,
   linkUrl: string,
   size: string
+}
+
+export type CollectionsType = {
+  hats: CollectionItemType,
+  sneakers: CollectionItemType,
+  jackets: CollectionItemType,
+  womens: CollectionItemType,
+  mens: CollectionItemType
 }
 
 export type CollectionItemType = {
