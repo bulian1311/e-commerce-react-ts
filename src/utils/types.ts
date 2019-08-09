@@ -10,7 +10,7 @@ export type UserStateType = {
 };
 
 export type ShopStateType = {
-  collections: CollectionsType
+  collections: CollectionsType | null
 }
 
 export type CartStateType = {

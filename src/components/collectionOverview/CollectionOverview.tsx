@@ -6,21 +6,24 @@ import { CollectionItemType, RootState } from '../../utils/types';
 import './CollectionOverview.scss';
 
 type PropsType = {
-  collections: CollectionItemType[]
+  collections: CollectionItemType[] | null;
 }
 
 const CollectionOverview: FC<PropsType> = ({ collections }): ReactElement => {
+  console.log(collections);
+
   return (
     <div className="collections-overview">
       {
-        collections.map(
-          ({ ...props }: CollectionItemType) => (
-            <CollectionPreview
-              key={props.id}
-              {...props}
-            />
-          )
-        )
+        collections ?
+          collections.map(
+            ({ ...props }: CollectionItemType) => (
+              <CollectionPreview
+                key={props.id}
+                {...props}
+              />
+            )
+          ) : 'Loading...'
       }
     </div>
   )

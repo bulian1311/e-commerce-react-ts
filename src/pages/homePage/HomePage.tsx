@@ -12,4 +12,4 @@ const HomePage: FC<PropsType> = (): ReactElement => {
   )
 }
 
-export default HomePage
+export default HomePage;

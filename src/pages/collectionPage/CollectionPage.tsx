@@ -11,23 +11,28 @@ type MatchParams = {
 }
 
 type PropsType = RouteComponentProps<MatchParams> & {
-  collection: CollectionItemType
+  collection: CollectionItemType | null
 }
 
 const CollectionPage: FC<PropsType> = ({ collection }): ReactElement => {
-  const { title, items } = collection;
   return (
+
     <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
-        {
-          items.map(
-            (item: ShopItemType) => <CollectionItem key={item.id} item={item} />
-          )
-        }
-      </div>
-    </div>
-  )
+      {
+        collection ? (
+          <div>
+            <h2 className="title">{collection.title}</h2>
+            <div className="items">
+              {
+                collection.items.map(
+                  (item: ShopItemType) => <CollectionItem key={item.id} item={item} />
+                )
+              }
+            </div>
+          </div>
+        ) : ('Loading')
+      }
+    </div>)
 }
 
 const mapStateToProps = (state: RootState, ownProps: PropsType) => ({

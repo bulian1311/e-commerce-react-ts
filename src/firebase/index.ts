@@ -1,11 +1,13 @@
 import firebase from './firebase';
 import { auth, signInWithGoogle, createUserProfileDocument } from './auth';
-import { firestore } from './firestore';
+import { firestore, addCollectionAndDocuments, convertCollectionsSnapshotToMap } from './firestore';
 
 export {
   firebase,
   firestore,
   auth,
   signInWithGoogle,
-  createUserProfileDocument
+  createUserProfileDocument,
+  addCollectionAndDocuments,
+  convertCollectionsSnapshotToMap
 };
