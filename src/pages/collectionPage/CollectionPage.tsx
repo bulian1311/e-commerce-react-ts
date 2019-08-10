@@ -19,7 +19,7 @@ const CollectionPage: FC<PropsType> = ({ collection }): ReactElement => {
 
     <div className="collection-page">
       {
-        collection ? (
+        collection && (
           <div>
             <h2 className="title">{collection.title}</h2>
             <div className="items">
@@ -30,7 +30,7 @@ const CollectionPage: FC<PropsType> = ({ collection }): ReactElement => {
               }
             </div>
           </div>
-        ) : ('Loading')
+        )
       }
     </div>)
 }

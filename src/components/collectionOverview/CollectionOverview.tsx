@@ -10,20 +10,19 @@ type PropsType = {
 }
 
 const CollectionOverview: FC<PropsType> = ({ collections }): ReactElement => {
-  console.log(collections);
 
   return (
     <div className="collections-overview">
       {
-        collections ?
-          collections.map(
-            ({ ...props }: CollectionItemType) => (
-              <CollectionPreview
-                key={props.id}
-                {...props}
-              />
-            )
-          ) : 'Loading...'
+        collections &&
+        collections.map(
+          ({ ...props }: CollectionItemType) => (
+            <CollectionPreview
+              key={props.id}
+              {...props}
+            />
+          )
+        )
       }
     </div>
   )
@@ -31,6 +30,6 @@ const CollectionOverview: FC<PropsType> = ({ collections }): ReactElement => {
 
 const mapStateToProps = (state: RootState) => ({
   collections: selectCollectionForPreview(state)
-})
+});
 
 export default connect(mapStateToProps)(CollectionOverview);

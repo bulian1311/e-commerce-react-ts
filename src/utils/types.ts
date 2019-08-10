@@ -10,7 +10,9 @@ export type UserStateType = {
 };
 
 export type ShopStateType = {
-  collections: CollectionsType | null
+  collections: CollectionsType | null,
+  isFetching: boolean,
+  errorMessage: string | null
 }
 
 export type CartStateType = {
