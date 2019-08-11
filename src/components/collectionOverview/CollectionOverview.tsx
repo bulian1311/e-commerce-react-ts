@@ -1,8 +1,6 @@
 import React, { FC, ReactElement } from 'react';
-import { connect } from 'react-redux';
-import { selectCollectionForPreview } from '../../redux/shop/shopSelectors';
 import CollectionPreview from '../collectionPreview';
-import { CollectionItemType, RootState } from '../../utils/types';
+import { CollectionItemType } from '../../utils/types';
 import './CollectionOverview.scss';
 
 type PropsType = {
@@ -28,8 +26,4 @@ const CollectionOverview: FC<PropsType> = ({ collections }): ReactElement => {
   )
 }
 
-const mapStateToProps = (state: RootState) => ({
-  collections: selectCollectionForPreview(state)
-});
-
-export default connect(mapStateToProps)(CollectionOverview);
+export default CollectionOverview;

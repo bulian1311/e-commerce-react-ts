@@ -3,7 +3,7 @@ import './App.scss';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/header';
 import HomePage from '../pages/homePage';
-import ShopPage from '../pages/shopPage';
+import { ShopPageContainer } from '../pages/shopPage';
 import CheckOutPage from '../pages/checkOutPage';
 import SignInAndSignUpPage from '../pages/signInAndSignUpPage';
 import { UserType, RootState } from '../utils/types';
@@ -54,7 +54,7 @@ class App extends React.Component<PropsType> {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
+          <Route path="/shop" component={ShopPageContainer} />
           <Route
             exact
             path="/signin"

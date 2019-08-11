@@ -1,16 +1,14 @@
 import React, { FC, ReactElement } from 'react';
-import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import CollectionItem from '../../components/collectionItem';
-import { selectCollection } from '../../redux/shop/shopSelectors';
-import { RootState, CollectionItemType, ShopItemType } from '../../utils/types';
+import { CollectionItemType, ShopItemType } from '../../utils/types';
 import './CollectionPage.scss';
 
 type MatchParams = {
   collectionId: 'hats' | 'sneakers' | 'jackets' | 'womens' | 'mens'
 }
 
-type PropsType = RouteComponentProps<MatchParams> & {
+export type PropsType = RouteComponentProps<MatchParams> & {
   collection: CollectionItemType | null
 }
 
@@ -35,8 +33,4 @@ const CollectionPage: FC<PropsType> = ({ collection }): ReactElement => {
     </div>)
 }
 
-const mapStateToProps = (state: RootState, ownProps: PropsType) => ({
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
-})
-
-export default connect(mapStateToProps)(CollectionPage);
+export default CollectionPage;

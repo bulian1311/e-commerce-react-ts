@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent, ComponentClass } from 'react';
 import './WithSpinner.scss';
 
-const WithSpinner = (WrappedComponent: any) => {
-  const Spinner = ({ isLoading, ...otherProps }: any) => {
+const WithSpinner = (WrappedComponent: FunctionComponent | ComponentClass) => {
+  const Spinner: FunctionComponent = ({ isLoading, ...otherProps }: any) => {
     return isLoading ? (
       <div className="spinner-overlay">
         <div className="spinner-container">
@@ -10,6 +10,7 @@ const WithSpinner = (WrappedComponent: any) => {
       </div>
     ) : <WrappedComponent {...otherProps} />
   }
+
   return Spinner;
 }
 
