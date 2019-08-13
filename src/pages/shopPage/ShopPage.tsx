@@ -4,14 +4,14 @@ import { CollectionPageContainer } from '../collectionPage';
 import { CollectionOverviewContainer } from '../../components/collectionOverview';
 
 type PropsType = RouteComponentProps & {
-  fetchCollestionsStartAsync: () => void
+  fetchCollectionsStart: () => void
 };
 
-const ShopPage: FC<PropsType> = ({ match, fetchCollestionsStartAsync }): ReactElement => {
+const ShopPage: FC<PropsType> = ({ match, fetchCollectionsStart }): ReactElement => {
 
   useEffect(() => {
-    fetchCollestionsStartAsync();
-  }, [fetchCollestionsStartAsync]);
+    fetchCollectionsStart();
+  }, [fetchCollectionsStart]);
 
   return (
     <div className="shop-page">

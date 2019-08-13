@@ -6,7 +6,8 @@ export type RootState = {
 }
 
 export type UserStateType = {
-  currentUser: UserType | null;
+  currentUser: UserType | null,
+  errorMassage: string | null
 };
 
 export type ShopStateType = {
@@ -28,7 +29,7 @@ export type UserType = {
   id: string,
   displayName: string,
   email: string,
-  createdAt: any
+  createdAt?: any
 }
 
 export type DirectoryItemType = {

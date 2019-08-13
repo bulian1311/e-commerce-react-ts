@@ -30,3 +30,7 @@ export const removeItem: ActionCreator<AnyAction> = (item: CartItemType): AnyAct
     payload: item
   }
 }
+
+export const clearCart: ActionCreator<AnyAction> = (): AnyAction => ({
+  type: cartActionTypes.CLEAR_CART
+});

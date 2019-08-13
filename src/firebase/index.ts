@@ -1,13 +1,4 @@
-import firebase from './firebase';
-import { auth, signInWithGoogle, createUserProfileDocument } from './auth';
-import { firestore, addCollectionAndDocuments, convertCollectionsSnapshotToMap } from './firestore';
+export { default as firebase } from './firebase';
+export * from './auth';
+export * from './firestore';
 
-export {
-  firebase,
-  firestore,
-  auth,
-  signInWithGoogle,
-  createUserProfileDocument,
-  addCollectionAndDocuments,
-  convertCollectionsSnapshotToMap
-};

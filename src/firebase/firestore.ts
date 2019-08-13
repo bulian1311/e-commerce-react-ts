@@ -1,6 +1,6 @@
 import firebase from './firebase';
 import { Firestore, QuerySnapshot, QueryDocumentSnapshot } from './types';
-import { ShopItemType } from '../utils/types';
+import { ShopItemType, CollectionItemType } from '../utils/types';
 
 export const firestore: Firestore = firebase.firestore();
 
@@ -22,7 +22,9 @@ export const addCollectionAndDocuments = async (collectionKey: string, objectsTo
   return await batch.commit();
 }
 
-export const convertCollectionsSnapshotToMap = (collections: QuerySnapshot) => {
+export const convertCollectionsSnapshotToMap = (
+  collections: QuerySnapshot
+): Map<string, CollectionItemType> => {
   const transformCollection = collections.docs.map(
     (doc: QueryDocumentSnapshot) => {
       const { title, items } = doc.data();

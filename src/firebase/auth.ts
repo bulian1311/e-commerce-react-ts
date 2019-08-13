@@ -5,10 +5,19 @@ import { DocumentReference, DocumentSnapshot, User } from './types';
 
 export const auth: Auth = firebase.auth();
 
-const provider: GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+export const googleProvider: GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const signInWithGoogle = (): any => auth.signInWithPopup(provider);
+export const signInWithGoogle = (): any => auth.signInWithPopup(googleProvider);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve: any, reject: any) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+}
 
 export const createUserProfileDocument = async (
   userAuth: User, addittionalData?: any

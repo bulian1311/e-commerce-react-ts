@@ -7,40 +7,22 @@ import { ShopPageContainer } from '../pages/shopPage';
 import CheckOutPage from '../pages/checkOutPage';
 import SignInAndSignUpPage from '../pages/signInAndSignUpPage';
 import { UserType, RootState } from '../utils/types';
-import { auth, createUserProfileDocument } from '../firebase';
-import { DocumentSnapshot, DocumentReference, User } from '../firebase/types';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { selectCurrentUser } from '../redux/user/userSelectors';
-import { setCurrentUser } from '../redux/user/userActions';
+import { checkUserSession } from '../redux/user/userActions';
 
 type PropsType = {
   currentUser: UserType,
-  setCurrentUser: (user: UserType | null) => void
+  checkUserSession: () => void
 }
 
 class App extends React.Component<PropsType> {
   private unsubscribeFromAuth: any;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth: User | null) => {
-      if (userAuth) {
-        const userRef: DocumentReference = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snap: DocumentSnapshot) => {
-          const data: any = snap.data();
-
-          setCurrentUser({
-            id: snap.id,
-            displayName: data.displayName,
-            email: data.email,
-            createdAt: data.createdAt
-          });
-        });
-      }
-      setCurrentUser(null);
-    });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -72,7 +54,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setCurrentUser: (user: UserType | null) => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

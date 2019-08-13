@@ -1,7 +1,9 @@
 import React, { Component, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../formInput';
 import CustomButton from '../customButton';
-import { auth, signInWithGoogle } from '../../firebase';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { googleSignInStart, emailSignInStart } from '../../redux/user/userActions';
 import './SignIn.scss';
 
 type StateType = {
@@ -9,7 +11,12 @@ type StateType = {
   password: string
 }
 
-class SignIn extends Component<{}, StateType> {
+type PropsType = {
+  googleSignInStart: () => void,
+  emailSignInStart: (email: string, password: string) => void
+}
+
+class SignIn extends Component<PropsType, StateType> {
   state = {
     email: '',
     password: ''
@@ -17,17 +24,10 @@ class SignIn extends Component<{}, StateType> {
 
   private handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-
+    const { emailSignInStart } = this.props;
     const { email, password } = this.state;
 
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-
-      this.setState({
-        email: '',
-        password: ''
-      });
-    } catch (err) { console.error(err.message) }
+    emailSignInStart(email, password);
   }
 
   private handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +43,7 @@ class SignIn extends Component<{}, StateType> {
   }
 
   render() {
+    const { googleSignInStart } = this.props;
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
@@ -69,7 +70,9 @@ class SignIn extends Component<{}, StateType> {
           />
           <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
+            <CustomButton type="button" onClick={googleSignInStart} isGoogleSignIn>
+              Sign In With Google
+            </CustomButton>
           </div>
         </form>
       </div>
@@ -77,4 +80,9 @@ class SignIn extends Component<{}, StateType> {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email: string, password: string) => dispatch(emailSignInStart({ email, password }))
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);

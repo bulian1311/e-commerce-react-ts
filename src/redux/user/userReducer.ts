@@ -3,7 +3,8 @@ import { UserStateType } from '../../utils/types';
 import userActionTypes from './userActionTypes';
 
 const INITIAL_STATE: UserStateType = {
-  currentUser: null
+  currentUser: null,
+  errorMassage: null
 }
 
 const userReducer: Reducer<UserStateType, AnyAction> = (
@@ -11,8 +12,17 @@ const userReducer: Reducer<UserStateType, AnyAction> = (
   action
 ): UserStateType => {
   switch (action.type) {
-    case userActionTypes.SET_CURRENT_USER:
-      return { ...state, currentUser: action.payload };
+    case userActionTypes.SIGN_IN_SUCCESS:
+      return { ...state, currentUser: action.payload, errorMassage: null };
+
+    case userActionTypes.SIGN_OUT_SUCCESS:
+      return { ...state, currentUser: null, errorMassage: null }
+
+    case userActionTypes.SIGN_IN_FAILURE:
+    case userActionTypes.SIGN_OUT_FAILURE:
+    case userActionTypes.SIGN_UP_FAILURE:
+      return { ...state, errorMassage: action.payload }
+
     default:
       return state;
   }
