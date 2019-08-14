@@ -14,7 +14,6 @@ export type PropsType = RouteComponentProps<MatchParams> & {
 
 const CollectionPage: FC<PropsType> = ({ collection }): ReactElement => {
   return (
-
     <div className="collection-page">
       {
         collection && (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import './App.scss';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/header';
@@ -17,37 +17,29 @@ type PropsType = {
   checkUserSession: () => void
 }
 
-class App extends React.Component<PropsType> {
-  private unsubscribeFromAuth: any;
+const App: FC<PropsType> = ({ currentUser, checkUserSession }): ReactElement => {
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
-    const { currentUser } = this.props;
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPageContainer} />
-          <Route
-            exact
-            path="/signin"
-            render={() => currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />}
-          />
-          <Route path="/checkout" component={CheckOutPage} />
-        </Switch>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPageContainer} />
+        <Route
+          exact
+          path="/signin"
+          render={() => currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />}
+        />
+        <Route path="/checkout" component={CheckOutPage} />
+      </Switch>
+    </div>
+  );
 }
+
 
 const mapStateToProps = (state: RootState) => ({
   currentUser: selectCurrentUser(state)
